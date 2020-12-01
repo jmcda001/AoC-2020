@@ -15,6 +15,13 @@ class Day1(private val expenseReport: List<Int>): Day {
     }
 
     override fun puzzle2(): Int? {
+        var possibleSums = mutableSetOf<Int>()
+        expenseReport.forEachIndexed { i, a ->
+            expenseReport.subList(0,i).filter { b -> possibleSums.contains(a + b) }.forEach { b ->
+                return a * b * (2020 - (a + b))
+            }
+            possibleSums.add(2020 - a)
+        }
         return null
     }
 
