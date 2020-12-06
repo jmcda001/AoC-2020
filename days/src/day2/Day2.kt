@@ -11,8 +11,7 @@ data class PolicyPuzzle1(val low: Int, val high: Int, val symbol: Char): Policy 
 }
 
 data class PolicyPuzzle2(val index1: Int, val index2: Int, val symbol: Char): Policy {
-    override fun isValid(password: String) = (password[index1-1] == symbol || password[index2-1] == symbol) &&
-                    password[index1-1] != password[index2-1]
+    override fun isValid(password: String) = (password[index1-1] == symbol) xor (password[index2-1] == symbol)
 }
 
 class Day2(private val passwords: List<Pair<Pair<Pair<Int, Int>, Char>, String>>): Day {
