@@ -42,21 +42,11 @@ class Day4(private val passports: List<Map<String, String>>) : Day {
             }
         }
 
-        fun buildFromFile(filename: String): Day4 {
-            var currentCombined = ""
-            val passports = mutableListOf<Map<String, String>>()
-            File(filename).useLines { lines ->
-                lines.forEach { line ->
-                    if (line.isEmpty()) {
-                        passports.add(currentCombined.buildPassport())
-                        currentCombined = ""
-                    } else {
-                        currentCombined += "$line "
-                    }
+        fun buildFromFile(filename: String): Day4 =
+            Day4(File(filename).readText().let { lines ->
+                lines.split("\n\n").map { line ->
+                    line.replace('\n',' ').buildPassport()
                 }
-            }
-            passports.add(currentCombined.buildPassport())
-            return Day4(passports)
-        }
+            })
     }
 }
