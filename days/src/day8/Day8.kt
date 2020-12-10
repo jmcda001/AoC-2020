@@ -13,7 +13,7 @@ class Day8(private val program: List<Instruction>) : Day {
             return super.toString().toLowerCase()
         }
     }
-    fun OPERATION.execute(state: State,amount: Int) = when(this) {
+    private fun OPERATION.execute(state: State, amount: Int) = when(this) {
         OPERATION.ACC -> State(state.accumulator + amount, state.pc + 1)
         OPERATION.JMP -> State(state.accumulator, state.pc + amount)
         OPERATION.NOP -> State(state.accumulator, state.pc + 1)
