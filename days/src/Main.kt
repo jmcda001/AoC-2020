@@ -6,6 +6,7 @@ import day5.Day5
 import day6.Day6
 import day7.Day7
 import day8.Day8
+import day9.Day9
 
 fun main() {
     val evaluateDay = { day: Day -> DayResults(day.puzzle1(), day.puzzle2())}
@@ -18,4 +19,5 @@ fun main() {
     println("Day 6: ${evaluateDay(Day6.buildFromFile("day6/input.txt"))}")
     println("Day 7: ${evaluateDay(Day7.buildFromFile("day7/input.txt"))}")
     println("Day 8: ${evaluateDay(Day8.buildFromFile("day8/input.txt"))}")
+    println("Day 9: ${evaluateDay(Day9.buildFromFile("day9/input.txt"))}")
 }
