@@ -5,7 +5,7 @@ import java.io.File
 import kotlin.test.assertEquals
 
 class Day1(private val expenseReport: List<Int>): Day {
-    override fun puzzle1() = expenseReport.asSequence().associateBy { 2020 - it }.let { adjusted ->
+    override fun puzzle1(): Int? = expenseReport.asSequence().associateBy { 2020 - it }.let { adjusted ->
         val result = expenseReport.filter { adjusted.contains(it) }
         if (result.size != 2) {
             null

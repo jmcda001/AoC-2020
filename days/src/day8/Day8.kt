@@ -2,8 +2,6 @@ package day8
 
 import Day
 import java.io.File
-import java.util.Collections.copy
-import java.util.concurrent.atomic.DoubleAccumulator
 
 class Day8(private val program: List<Instruction>) : Day {
     enum class OPERATION {
