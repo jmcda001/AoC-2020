@@ -12,13 +12,15 @@ class Day11(private val seatingMap: List<List<SeatStatus>>) : Day {
     private fun List<List<SeatStatus>>.isStatus(seat: Coordinate, status: SeatStatus) =
             this.getStatus(seat) == status
 
-    private fun lineOfSight(seat: Coordinate, delta: Coordinate) = generateSequence(seat) {
-        Coordinate(it.row + delta.row, it.column + delta.column)
-    }
+    private fun lineOfSight(seat: Coordinate, delta: Coordinate) =
+            generateSequence(Coordinate(seat.row+delta.row, seat.column+delta.column)) {
+                Coordinate(it.row + delta.row, it.column + delta.column)
+            }
     private fun List<List<SeatStatus>>.inSight(seat: Coordinate, delta: Coordinate) =
-            lineOfSight(seat, delta).drop(1).first { this.getStatus(it).let { status ->
-                status == SeatStatus.OCCUPIED || status == SeatStatus.EMPTY
+            lineOfSight(seat, delta).first { this.getStatus(it).let { status ->
+                status != SeatStatus.FLOOR
             } }.let { this.getStatus(it) == SeatStatus.OCCUPIED }
+
     private fun List<List<SeatStatus>>.adjacent(seat: Coordinate, delta: Coordinate) =
             this.getStatus(lineOfSight(seat, delta).first()) == SeatStatus.OCCUPIED
 
@@ -78,9 +80,8 @@ class Day11(private val seatingMap: List<List<SeatStatus>>) : Day {
     override fun puzzle1() = generateSequence(Round(0,seatingMap)) { it.map.applyRound(true) }
             .drop(1).first { it.differences == 0 }.map.countStatus(SeatStatus.OCCUPIED)
 
-    override fun puzzle2(): Int? = null
-//    generateSequence(Round(0,seatingMap)) { it.map.applyRound(false) }
-//            .drop(1).first { it.differences == 0 }.map.countStatus(SeatStatus.OCCUPIED)
+    override fun puzzle2(): Int? = generateSequence(Round(0,seatingMap)) { it.map.applyRound(false) }
+            .drop(1).first { it.differences == 0 }.map.countStatus(SeatStatus.OCCUPIED)
 
     companion object {
         fun buildFromFile(filename: String) = Day11(

@@ -10,7 +10,7 @@ import day7.Day7
 import day8.Day8
 import day9.Day9
 
-fun main() {
+fun main(args: Array<String>) {
     val evaluateDay = { day: Day -> DayResults(day.puzzle1(), day.puzzle2())}
     val days = listOf(
             {fn: String -> evaluateDay(Day1.buildFromFile(fn))},
@@ -26,12 +26,11 @@ fun main() {
             {fn: String -> evaluateDay(Day11.buildFromFile(fn))}
     )
 
-    val runAll = false
-    if (runAll) {
+    if (args.isEmpty()) {
         days.forEachIndexed { i, day ->
             println("Day ${i + 1}: ${day("day${i + 1}/input.txt")}")
         }
     } else {
-        println("Day ${days.size}: ${days.last()("day${days.size}/input.txt")}")
+        println("Day ${days.size}: ${days.last()("day${days.size}/${args.first()}")}")
     }
 }
