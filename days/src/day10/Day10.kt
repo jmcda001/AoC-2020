@@ -19,9 +19,7 @@ class Day10(values: List<Int>) : Day {
             }
         }.last()
     }
-    override fun puzzle2(): Int? = jolts.map { it.toLong() }.joltArrangements().also {
-        println("Solution: $it")
-    }.toInt()
+    override fun puzzle2(): Int? = jolts.map { it.toLong() }.joltArrangements().toInt()
 
     companion object {
         fun buildFromFile(filename: String) = Day10(
