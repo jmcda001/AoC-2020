@@ -1,0 +1,6 @@
+# Remove the meta files
+META-INF/
+
+# Remove the build files
+*.class
+day*/

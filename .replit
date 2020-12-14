@@ -1,0 +1,2 @@
+language = "kotlin"
+run = "./build.sh && cd days/src && java -jar aoc.jar"
